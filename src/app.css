@@ -1,4 +1,201 @@
 :root {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-		'Open Sans', 'Helvetica Neue', sans-serif;
+  /* 1rem = 1p = 12pt*/
+  /* leads */
+  --u-1p: 0.083rem;
+  --u-2p: 0.166rem;
+  --u-3p: 0.25rem;
+  --u-6p: 0.5rem;
+
+  /* type sizes*/
+  --s-8:  0.666rem;
+  --s-10: 0.833rem;
+  --s-12: 1rem;
+  --s-14: 1.166rem;
+  --s-18: 1.5rem;
+  --s-20: 1.666rem;
+  --s-24: 2rem;
+  --s-28: 2.333rem;
+  --s-36: 3rem;
+  --color-figure: #512f1e;
+  --color-ground: #bfbebc;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+};
+
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Black.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Bold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Semibold.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Medium.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Regular.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Rza-Trial";
+  src: url("./fonts/Rza-Trial-Light.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family:"Input";
+  font-display: swap;
+  src: url("./fonts/Input-Regular.woff2") format("woff2"),
+       url("./fonts/Input-Regular.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Themes
+| name    | figure  | ground  | black   | white   | Accent  |
+|:--------|:--------|:--------|:--------|:--------|:--------|
+| Default | #512f1e | #bfbebc |         |         |         |
+| Blue    | #001d60 | #41bcbe |         |         |         |
+| Orange  | #fd6e31 | #efc7c0 |         |         |         |
+| Green   | #1a1819 | #bec991 |         |         |         |
+| IKB     | #181c22 | #1500fe |         |         |         |
+| Classic | #dccaff | #701eff | #491363 | #ffcbd3 |         |
+| Neutral | #0b0b0b | #cccccc | #333333 | #eeeeee |         |
+| Night   |         |         |         |         |         |
+*/
+
+:root {
+
+}
+
+.theme-default {
+  --color-figure: #512f1e;
+  --color-ground: #bfbebc;
+  --color-black:  #1a1a1b;
+  --color-white:  #fefefe;
+}
+
+.theme-blue {
+  --color-figure: #001d60;
+  --color-ground: #41bcbe;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+
+.theme-orange {
+  --color-figure: #fd6e31;
+  --color-ground: #efc7c0;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+.theme-green {
+  --color-figure: #1a1819;
+  --color-ground: #bec991;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+.theme-ikb {
+  --color-figure: #181c22;
+  --color-ground: #1500fe;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+.theme-classic {
+  --color-figure: #dccaff;
+  --color-ground: #701eff;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+.theme-neutral {
+  --color-figure: #0b0b0b;
+  --color-ground: #cccccc;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+.theme-night {
+  --color-figure: #512f1e;
+  --color-ground: #bfbebc;
+  --color-black:  #1a1a1b;
+  --color-white:  #bfbebc;
+}
+
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-ground);
+  color: var(--color-figure);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rza-Trial';
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rza-Trial';
+  font-weight: 700;
+}
+
+pre,
+code {
+  font-family: 'Input';
+}
+
+label {
+  display: block;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-padding: 0.4em 0;
+  padding: 0.4em;
+  margin: 0 0 0.5em 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+input:disabled {
+  color: #ccc;
+}
+
+button {
+  background-color: #333;
+  color: #f4f4f4;
+  outline: none;
+}
+
+button:disabled {
+  color: #999;
+}
+
+button:not(:disabled):active {
+  background-color: #ddd;
+}
+
+button:focus {
+  border-color: #666;
 }
