@@ -15,7 +15,7 @@
     padding: calc(var(--u-1p) + var(--u-6p)) calc(var(--u-3p) + var(--u-6p));
     border: 1px solid var(--color-ground);
     text-decoration: none;
-    border-radius: 1rem;
+    border-radius: 2em;
     transform: translate3d(0,0,0);
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     transition: all 200ms ease-in-out;

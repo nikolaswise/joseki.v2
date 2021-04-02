@@ -29,8 +29,10 @@
 <style>
   .theme {
     min-height: 100vh;
+    box-sizing: border-box;
     display: grid;
     grid-template-rows: 1fr auto;
+    padding-top: 1rem;
   }
 
   footer {
