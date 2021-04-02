@@ -48,10 +48,12 @@
     justify-content: space-between;
   }
   .black {
+    width: 40%;
     animation: orbitBlack 4.5s infinite;
     animation-timing-function: ease-in-out;
   }
   .white {
+    width: 40%;
     animation: orbitWhite 4.5s infinite;
     animation-timing-function: ease-in-out;
   }

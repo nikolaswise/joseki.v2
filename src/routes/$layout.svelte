@@ -20,6 +20,9 @@
 
   <footer>
     <p>Play Go online with friends, party time 🎉</p>
+    {#if $page.path === '/'}
+      <p>Built by <a href="https://nikolas.ws/">nikolas.ws</a></p>
+    {/if}
   </footer>
 </div>
 
