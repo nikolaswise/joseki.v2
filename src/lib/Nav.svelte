@@ -1,4 +1,6 @@
 <script>
+  import { page } from '$app/stores';
+
   import Button from './Button.svelte'
   import Lockup from './Lockup.svelte'
 </script>
@@ -8,10 +10,12 @@
     <Lockup stacked={false} small={true}/>
   </a>
   <div class="actions">
-    <Button
-      href="/new">
-      New Game
-    </Button>
+    {#if $page === '/'}
+      <Button
+        href="/new">
+        New Game
+      </Button>
+    {/if}
     <Button>
       ◐
     </Button>
