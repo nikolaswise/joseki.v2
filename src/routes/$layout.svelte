@@ -1,11 +1,21 @@
 <script>
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import HomeNav from '$lib/HomeNav.svelte'
   import Nav from '$lib/Nav.svelte'
+  import { WebRTC, RTCData } from '$lib/WebRTC.js'
 	import '../app.css';
-  $: {
-    console.log($page)
-  }
+
+  console.log('starting state unknown answer')
+  console.log($RTCData)
+  let data
+
+  onMount(async () => {
+    console.log('determine and set answer')
+    data = await WebRTC()
+    console.log($data)
+    RTCData.set($data)
+  })
 </script>
 
 <div class="theme theme-default">
@@ -15,7 +25,7 @@
     {:else}
       <Nav />
     {/if}
-    <slot />
+    <slot/>
   </div>
 
   <footer>

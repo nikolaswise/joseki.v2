@@ -1,4 +1,9 @@
 <script>
+  import { onMount } from 'svelte';
+  import { RTCData } from '$lib/WebRTC.js'
+
+
+  import { goto } from '$app/navigation';
   import generateName from '$lib/game-names.js'
   import Button from '$lib/Button.svelte'
 
@@ -7,9 +12,15 @@
   let size = 19
   let color = 'white'
 
+  $: {
+    console.log('retreive answer')
+    console.log($RTCData)
+  }
+
   const createGame = (e) => {
     e.preventDefault()
     console.log('new game!')
+    goto(`/${name}`)
   }
 </script>
 
