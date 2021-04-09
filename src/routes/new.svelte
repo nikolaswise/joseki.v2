@@ -1,31 +1,36 @@
 <script>
   import { onMount } from 'svelte';
+
   import { RTCData } from '$lib/WebRTC.js'
-
-
   import { goto } from '$app/navigation';
   import generateName from '$lib/game-names.js'
   import Button from '$lib/Button.svelte'
+  import { createGame } from '$lib/CreateGame.js'
 
   let name = generateName()
   let komi = 0.5
   let size = 19
   let color = 'white'
 
-  $: {
-    console.log('retreive answer')
-    console.log($RTCData)
-  }
-
-  const createGame = (e) => {
+  const newGame = async (e) => {
     e.preventDefault()
-    console.log('new game!')
-    goto(`/${name}`)
+    console.log('I update RTCData')
+    console.log($RTCData)
+    RTCData.update($RTCData => $RTCData.set(name, 'newval'))
+    console.log($RTCData)
+    // let uri = await createGame({
+    //   RTCData,
+    //   name,
+    //   komi,
+    //   size,
+    // })
+    // console.log('new game!')
+    // goto(uri)
   }
 </script>
 
 <form
-  on:submit={createGame}>
+  on:submit={newGame}>
   <label>
     Room
     <input type="text" bind:value={name}  >

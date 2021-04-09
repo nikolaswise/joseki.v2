@@ -6,14 +6,35 @@
   import { WebRTC, RTCData } from '$lib/WebRTC.js'
 	import '../app.css';
 
-  console.log('starting state unknown answer')
-  console.log($RTCData)
   let data
+
+  $: {
+    if (data) {
+      console.log(`I sync data: ${Date.now()}`)
+      console.log($RTCData)
+      console.log($data)
+      // sync local data with upstream data
+      $data.forEach((value, key) => {
+        console.log(key)
+        if (!$RTCData.get(key) === value) {
+          $RTCData.set(key, value)
+        }
+      })
+      // sync upstream data with local data
+      $RTCData.forEach((value, key) => {
+        console.log(key)
+        if (!$data.get(key) === value) {
+          data.y.set(key, value)
+        }
+      })
+      console.log(`=>`)
+      console.log($data)
+    }
+  }
 
   onMount(async () => {
     console.log('determine and set answer')
     data = await WebRTC()
-    console.log($data)
     RTCData.set($data)
   })
 </script>

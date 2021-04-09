@@ -1,11 +1,7 @@
 <script>
   import { RTCData } from '$lib/WebRTC.js'
-
   $: {
-    console.log('retreive answer')
+    console.log('I consume RTC data')
     console.log($RTCData)
   }
 </script>
-
-<main>
-</main>
