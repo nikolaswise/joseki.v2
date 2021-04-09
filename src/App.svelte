@@ -12,13 +12,21 @@
   import New from './routes/new.svelte'
   import Slug from './routes/slug.svelte'
   import Components from './routes/components.svelte'
-  import { path } from './store.js';
+  import { path, player } from './store.js';
+  import { setLocalPlayerData } from './components/player-data'
   export let name;
 
   const ydoc = new Y.Doc();
   const provider = new WebrtcProvider('joseki-party', ydoc)
   const ymap = ydoc.getMap('dict');
   const dict = map.readable(ymap);
+
+  $: console.log($dict)
+
+  $: {
+    let playerData = JSON.stringify([...$player.entries()])
+    localStorage.setItem('joseki-party', playerData)
+  }
 </script>
 
 <div class="theme theme-default">
@@ -30,7 +38,7 @@
       <Nav />
       <New games={dict}/>
     {:else}
-      <Nav />
+      <Nav playing={$path.substring(1)}/>
       <Slug games={dict}/>
     {/if}
   </div>
@@ -59,9 +67,8 @@
   .defs {
     height: 0;
   }
-
   .theme {
-    min-height: 100vh;
+    min-height: 98vh;
     box-sizing: border-box;
     display: grid;
     grid-template-rows: 1fr auto;

@@ -125,11 +125,6 @@
   }
 </style>
 
-<header>
-  <Lockup stacked={false} small={true}/>
-  {#if loading} … {:else} <h1>Playing <code>{game.name.substring(1)}</code></h1> {/if}
-</header>
-
 <div class="container">
   {#if loading}
     <div class="meta">

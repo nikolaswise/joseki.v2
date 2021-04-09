@@ -1,6 +1,8 @@
 <script>
   import Button from './Button.svelte'
   import Lockup from './Lockup.svelte'
+
+  export let playing
 </script>
 
 <nav>
@@ -8,6 +10,9 @@
     <Lockup stacked={false} small={true}/>
   </a>
   <div class="actions">
+    {#if playing}
+      Playing <code>{playing}</code>
+    {/if}
     <Button>
       ◐
     </Button>
