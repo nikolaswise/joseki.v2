@@ -1,5 +1,6 @@
 <script>
-  import ThemePicker from './components/ThemePicker.svelte'
+  import HomeNav from './components/HomeNav.svelte'
+  import Nav from './components/Nav.svelte'
 
   import * as Y from 'yjs';
   import { WebsocketProvider } from 'y-websocket';
@@ -18,24 +19,29 @@
   const provider = new WebrtcProvider('joseki-party', ydoc)
   const ymap = ydoc.getMap('dict');
   const dict = map.readable(ymap);
-
 </script>
-<main>
-  {#if $path == '/'}
-    <Index games={dict}/>
-  {:else if $path == '/new'}
-    <New games={dict}/>
-  {:else if $path == '/components'}
-    <Components games={dict}/>
-  {:else}
-    <Slug games={dict}/>
-  {/if}
+
+<div class="theme theme-default">
+  <div class="content">
+    {#if $path == '/'}
+      <HomeNav />
+      <Index games={dict}/>
+    {:else if $path == '/new'}
+      <Nav />
+      <New games={dict}/>
+    {:else}
+      <Nav />
+      <Slug games={dict}/>
+    {/if}
+  </div>
 
   <footer>
-    <ThemePicker />
     <p>Play Go online with friends, party time 🎉</p>
+    {#if $path === '/'}
+      <p>Built by <a href="https://nikolas.ws/">nikolas.ws</a></p>
+    {/if}
   </footer>
-</main>
+</div>
 
 <svg
   class="defs"
@@ -53,17 +59,16 @@
   .defs {
     height: 0;
   }
-	main {
-		padding: 1em;
-		max-width: 1200px;
-		margin: 0 auto;
+
+  .theme {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     box-sizing: border-box;
-	}
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding-top: 1rem;
+  }
+
   footer {
     text-align: center;
-    margin-top: auto;
   }
 </style>

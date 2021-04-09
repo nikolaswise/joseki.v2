@@ -71,10 +71,7 @@
   }
 </style>
 
-<Lockup stacked={false} small={true}/>
-
 <h2>New Game</h2>
-
 <form
   on:submit={createGame}>
   <label>
