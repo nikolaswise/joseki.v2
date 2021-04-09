@@ -1,34 +1,34 @@
 <script>
-  import Lockup from '../components/Lockup.svelte'
-  import Button from '../components/Button.svelte'
-  import GameList from '../components/GameList.svelte'
+// import Lockup from '../components/Lockup.svelte'
+// import Button from '../components/Button.svelte'
+// import GameList from '../components/GameList.svelte'
 
-  import generateName from '../components/game-names'
-  import {player} from '../store.js';
+// import generateName from '../components/game-names'
+// import {player} from '../store.js';
+//
+//   export let games
+//   const newGame = () => {
+//     games.y.set(generateName(), 'cool-new-game')
+//   }
 
-  export let games
-  const newGame = () => {
-    games.y.set(generateName(), 'cool-new-game')
-  }
+  // let watchableGames
+  // let userGames
+  // let userTurnGames
+  // let userWaitingGames
 
-  let watchableGames
-  let userGames
-  let userTurnGames
-  let userWaitingGames
-
-  $: {
-    if ($games.size > 0) {
-      let gamesData = [...$games.values()].map(JSON.parse)
-      let playerData = [...$player.keys ()]
-      userGames = gamesData.filter(game => $player.get(game.name))
-      userTurnGames = userGames.filter(game => game.turn == $player.get(game.name))
-      userWaitingGames = userGames.filter(game => game.turn != $player.get(game.name))
-      watchableGames = gamesData.filter(game => !$player.get(game.name))
-      console.log(watchableGames)
-    }
-  }
+  // $: {
+  //   if ($games.size > 0) {
+  //     let gamesData = [...$games.values()].map(JSON.parse)
+  //     let playerData = [...$player.keys ()]
+  //     userGames = gamesData.filter(game => $player.get(game.name))
+  //     userTurnGames = userGames.filter(game => game.turn == $player.get(game.name))
+  //     userWaitingGames = userGames.filter(game => game.turn != $player.get(game.name))
+  //     watchableGames = gamesData.filter(game => !$player.get(game.name))
+  //     console.log(watchableGames)
+  //   }
+  // }
 </script>
-
+<!--
 <style>
   header {
     text-align: center;
@@ -95,4 +95,6 @@
     title="Watch Games"
     games={watchableGames}/>
 {/if}
+ -->
+
 
