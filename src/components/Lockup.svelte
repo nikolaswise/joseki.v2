@@ -9,7 +9,6 @@
     display: inline-block;
     text-align: center;
     font-weight: 700;
-    margin-bottom: 1rem;
   }
   .small {
     font-size: var(--s-12);

@@ -1,36 +1,82 @@
 <script>
-  import { onMount } from 'svelte';
+  import Lockup from '../components/Lockup.svelte'
+  import Button from '../components/Button.svelte'
 
-  import { RTCData } from '$lib/WebRTC.js'
-  import { goto } from '$app/navigation';
-  import generateName from '$lib/game-names.js'
-  import Button from '$lib/Button.svelte'
-  import { createGame } from '$lib/CreateGame.js'
+  import {path, player} from '../store.js';
+  import generateName from '../components/game-names'
+
+  export let games
 
   let name = generateName()
   let komi = 0.5
   let size = 19
   let color = 'white'
 
-  const newGame = async (e) => {
+  const createGame = (e) => {
     e.preventDefault()
-    console.log('I update RTCData')
-    console.log($RTCData)
-    RTCData.update($RTCData => $RTCData.set(name, 'newval'))
-    console.log($RTCData)
-    // let uri = await createGame({
-    //   RTCData,
-    //   name,
-    //   komi,
-    //   size,
-    // })
-    // console.log('new game!')
-    // goto(uri)
+
+    let gameData = {
+      name: `/${name}`,
+      komi: komi,
+      size: size,
+      turn: 'black',
+      winner: null,
+      resignation: false,
+      score: null,
+      consecutivePasses: 0,
+      players: 1,
+      accepted: {
+        black: false,
+        white: false,
+      },
+      history: [],
+      deadStones: [],
+    }
+
+    games.y.set(gameData.name, JSON.stringify(gameData))
+
+    player.update(p => p.set(gameData.name, color))
+    let playerData = JSON.stringify([...$player.entries()])
+    localStorage.setItem('joseki-party', playerData)
+
+    window.history.pushState({}, '', name);
+    path.set(gameData.name)
+
+    console.log($games)
   }
+
 </script>
 
+<style>
+  form {
+    border-top: 2px solid var(--color-figure);
+  }
+  label {
+    /*padding: var(--u-3p);*/
+    padding: calc(var(--u-2p) + var(--u-3p)) 0;
+    border-bottom: 2px solid var(--color-figure);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: "Input";
+    align-items: center;
+  }
+  input,
+  select {
+    margin-bottom: 0;
+  }
+
+  .submit {
+    text-align: right;
+    margin-top: 1rem;
+  }
+</style>
+
+<Lockup stacked={false} small={true}/>
+
+<h2>New Game</h2>
+
 <form
-  on:submit={newGame}>
+  on:submit={createGame}>
   <label>
     Room
     <input type="text" bind:value={name}  >
@@ -45,22 +91,10 @@
       <option value=0.5>
         1/2
       </option>
-      <option value=1.5>
-        1 1/2
-      </option>
-      <option value=2.5>
-        2 1/2
-      </option>
-      <option value=3.5>
-        3 1/2
-      </option>
-      <option value=4.5>
-        4 1/2
-      </option>
     </select>
   </label>
 
-  <label>
+<label>
     Size
     <select bind:value={size}>
       <option value="9">
@@ -94,28 +128,3 @@
     </Button>
   </div>
 </form>
-
-<style>
-  form {
-    max-width: max-content;
-    margin: auto;
-    border-top: 2px solid var(--color-figure);
-  }
-  label {
-    padding: calc(var(--u-2p) + var(--u-3p)) 0;
-    border-bottom: 2px solid var(--color-figure);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    font-family: "Input";
-    align-items: center;
-  }
-  input,
-  select {
-    margin-bottom: 0;
-  }
-
-  .submit {
-    text-align: right;
-    margin-top: 1rem;
-  }
-</style>

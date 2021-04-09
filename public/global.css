@@ -15,7 +15,7 @@
   --s-20: 1.666rem;
   --s-24: 2rem;
   --s-28: 2.333rem;
-  --s-36: 3rem;
+	--s-36: 3rem;
   --color-figure: #512f1e;
   --color-ground: #bfbebc;
   --color-black:  #1a1a1b;
@@ -138,18 +138,18 @@
 }
 
 html, body {
-  position: relative;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 body {
-  background-color: var(--color-ground);
-  color: var(--color-figure);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Rza-Trial';
+	background-color: var(--color-ground);
+	color: var(--color-figure);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Rza-Trial';
   font-weight: 300;
 }
 
@@ -163,39 +163,34 @@ code {
   font-family: 'Input';
 }
 
+a {
+	color: #579ad1;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #579ad1;
+}
+
 label {
-  display: block;
+	display: block;
 }
 
 input, button, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  -webkit-padding: 0.4em 0;
-  padding: 0.4em;
-  margin: 0 0 0.5em 0;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 2px;
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
 }
 
 input:disabled {
-  color: #ccc;
-}
-
-button {
-  background-color: #333;
-  color: #f4f4f4;
-  outline: none;
-}
-
-button:disabled {
-  color: #999;
-}
-
-button:not(:disabled):active {
-  background-color: #ddd;
-}
-
-button:focus {
-  border-color: #666;
+	color: #ccc;
 }
