@@ -132,7 +132,9 @@
     </div>
   {:else if typeof color != 'undefined'}
     <div class="meta">
-      {#if game.players == 1}
+      <mark>game meta</mark>
+      <InviteModal {invite} />
+      <!-- {#if game.players == 1}
         <InviteModal {invite} />
       {/if}
 
@@ -164,22 +166,24 @@
             <button on:click={reject}>Reject Stones</button>
           {/if}
         </div>
-      {/if}
+      {/if} -->
     </div>
   {:else}
     <div class="meta">
-      <h2>Watching {game.name}</h2>
+      <mark>game meta watching</mark>
+      <!-- <h2>Watching {game.name}</h2>
       {#if !game.winner }
         <h3>It is {game.turn}'s turn</h3>
       {:else}
         <h3>{game.winner} wins by {game.resignation ? 'resignation' : `${game.score} point${game.score > 1 ? 's' : '' }.` }</h3>
       {/if}
-    </div>
+    </div> -->
   {/if}
 
   <div class="board">
     {#if !loading}
-      <Goban
+      <mark>board</mark>
+      <!-- <Goban
         {game}
         {color}
         size={game.size}
@@ -188,7 +192,9 @@
         on:pass={pass}
         on:gameOver={gameOver}
         on:resign={resign}
-        on:move={play} />
+        on:move={play} /> -->
+    {:else}
+      <mark>loading board</mark>
     {/if}
   </div>
 </div>
