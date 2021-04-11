@@ -1,8 +1,13 @@
 <script>
   import Button from './Button.svelte'
   import Lockup from './Lockup.svelte'
+  import { path, player } from '../store.js';
 
-  export let playing
+
+  let color
+  $: color = $player.get($path)
+
+  export let room
 </script>
 
 <nav>
@@ -10,8 +15,8 @@
     <Lockup stacked={false} small={true}/>
   </a>
   <div class="actions">
-    {#if playing}
-      Playing <code>{playing}</code>
+    {#if room}
+      {color ? 'Playing' : 'Watching'} <code>{room}</code>
     {/if}
     <Button>
       ◐

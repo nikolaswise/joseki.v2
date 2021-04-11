@@ -21,6 +21,8 @@
   const ymap = ydoc.getMap('dict');
   const dict = map.readable(ymap);
 
+  let color
+
   $: console.log($dict)
 
   $: {
@@ -38,7 +40,7 @@
       <Nav />
       <New games={dict}/>
     {:else}
-      <Nav playing={$path.substring(1)}/>
+      <Nav room={$path.substring(1)}/>
       <Slug games={dict}/>
     {/if}
   </div>
