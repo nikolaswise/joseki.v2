@@ -7,13 +7,21 @@
   export let play
 
   // submitMove(game, games, board.getCurrentPlayer())
-  let Player = color == 'white' ? 'o' : 'x'
-
   const pass = () => {
-    console.log('pass!')
+    game.history.push([
+      color == 'white' ? 'o' : 'x',
+      null,
+      null,
+      true
+    ])
+    game.consecutivePasses += 1
+    game.turn = game.turn == 'white' ? 'black' : 'white'
+    games.y.set(game.name, JSON.stringify(game))
   }
   const resign = () => {
-    console.log('resign!')
+    game.winner = color == 'white' ? 'black' : 'white'
+    game.resignation = true
+    games.y.set(game.name, JSON.stringify(game))
   }
 </script>
 

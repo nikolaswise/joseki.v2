@@ -12,30 +12,46 @@
   let play = false
   let other = color == 'white' ? 'black' : 'white'
   $: play = game.turn == color
+
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 </script>
 
 <div class="container">
   <div class="meta">
-    {#if game.players == 1}
+    {#if game.consecutivePasses == 2 && !game.winner }
       <div class="indicator">
         <Blob animate={true} color={color} size='large' />
         <Blob animate={true} color={other} size='large' />
       </div>
-      <h1>Waiting for an opponent to join.</h1>
-    {:else if play}
-      <div class="indicator">
-        <Blob animate={play} color={color} size='large' />
-        <Blob animate={!play} color={other} size='large' />
-      </div>
-      <h1>It's your turn.</h1>
-    {:else if !play }
-      <div class="indicator">
-        <Blob animate={play} color={color} size='large' />
-        <Blob animate={!play} color={other} size='large' />
-      </div>
-      <h1>Waiting for your opponent to play.</h1>
+      <h1>Remove Dead Stones</h1>
+    {:else if !game.winner }
+      {#if game.players == 1}
+        <div class="indicator">
+          <Blob animate={true} color={color} size='large' />
+          <Blob animate={true} color={other} size='large' />
+        </div>
+        <h1>Waiting for an opponent to join.</h1>
+      {:else if play}
+        <div class="indicator">
+          <Blob animate={play} color={color} size='large' />
+          <Blob animate={!play} color={other} size='large' />
+        </div>
+        <h1>It's your turn.</h1>
+      {:else if !play }
+        <div class="indicator">
+          <Blob animate={play} color={color} size='large' />
+          <Blob animate={!play} color={other} size='large' />
+        </div>
+        <h1>Waiting for your opponent to play.</h1>
+      {:else}
+        <h1>Loading …</h1>
+      {/if}
     {:else}
-      <h1>Loading …</h1>
+      <div class="indicator">
+        <Blob color={color} size='large' />
+        <Blob color={other} size='large' />
+      </div>
+      <h1>{capitalizeFirstLetter(game.winner)} wins by {game.resignation ? 'resignation' : `${game.score} point${game.score > 1 ? 's' : '' }.` }</h1>
     {/if}
 
     {#if game.players == 1}
