@@ -25,8 +25,6 @@
     board = Weiqi.createGame(game.size)
 
     game.history.some(([player, x, y, pass], i) => {
-      console.log('recreate game from move')
-      console.log(player, x, y, pass)
       if (pass) {
         board = board.pass(player)
         latestMove = []

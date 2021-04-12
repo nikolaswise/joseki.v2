@@ -3,6 +3,7 @@
   export let color = 'black'
   export let size = 'medium'
   export let animate = false
+  export let onBoard = false
   export let count = 8
   export let drift = 40
   export let deform = 80
@@ -56,6 +57,14 @@
     width: var(--s-10);
   }
 
+  .onboard {
+    height: calc(100% - var(--u-2p));
+    width: calc(100% - var(--u-2p));
+    position: absolute;
+    margin: 0;
+    z-index: 100;
+  }
+
   .large {
     height: var(--s-36);
     width: var(--s-36);
@@ -83,6 +92,7 @@
   class={`
     blob
     ${color == 'white' ? 'white' : 'black'}
+    ${onBoard ? 'onboard' : ''}
     ${size == 'small' ? 'small' : ''}
     ${size == 'large' ? 'large' : ''}
     ${animate ? 'animate' : ''}
