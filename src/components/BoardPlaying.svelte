@@ -44,7 +44,7 @@
         Waiting for another player to joing. Once they do, the game will begin.
       </p>
     {:else}
-      <Actions {game} {games} {color}/>
+      <Actions {game} {games} {color} {play}/>
     {/if}
 
   </div>
