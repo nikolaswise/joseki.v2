@@ -8,6 +8,8 @@
   export let x
   export let y
   export let staged
+  export let isMarkingDead
+  export let isMarkedDead
 
   const dispatch = createEventDispatcher();
 
@@ -27,6 +29,19 @@
 
   const unstage = () => {
     staged.set([])
+  }
+
+  const markDead = () => {
+    dispatch('markDead', {
+      x: x,
+      y: y
+    });
+  }
+  const markAlive = () => {
+    dispatch('markAlive', {
+      x: x,
+      y: y
+    });
   }
 </script>
 
@@ -50,12 +65,35 @@
   {/if}
 <!-- else -->
 {:else}
-  <!-- click to stage -->
-  <button
-    on:click={stage(x,y)}
-    class={playable} >
-    <PointContent {stone} {x} {y} {size}/>
-  </button>
+  <!-- if picking dead stones -->
+  {#if isMarkingDead }
+    <!-- if stone is in the deadMap -->
+    {#if isMarkedDead}
+      <!-- click to mark alive stone -->
+      <button
+        on:click={markAlive}
+        class={stone == 'x' || stone == 'o'} >
+        <PointContent {stone} {x} {y} {size} {isMarkedDead}/>
+      </button>
+    <!-- else -->
+    {:else}
+      <!-- click to mark dead stone -->
+      <button
+        on:click={markDead}
+        class={stone == 'x' || stone == 'o'} >
+        <PointContent {stone} {x} {y} {size}/>
+      </button>
+    <!-- end -->
+    {/if}
+  <!-- else -->
+  {:else}
+    <!-- click to stage -->
+    <button
+      on:click={stage(x,y)}
+      class={playable} >
+      <PointContent {stone} {x} {y} {size}/>
+    </button>
+  {/if}
 <!-- end -->
 {/if}
 

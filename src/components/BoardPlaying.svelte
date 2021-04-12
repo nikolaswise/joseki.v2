@@ -14,6 +14,7 @@
   $: play = game.turn == color
 
   const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
 </script>
 
 <div class="container">
@@ -66,7 +67,11 @@
   </div>
 
   <div class="board">
-    <Board {game} {games} {color} {play}/>
+    <Board
+      {game}
+      {games}
+      {color}
+      {play}/>
   </div>
 </div>
 

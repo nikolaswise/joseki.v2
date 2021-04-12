@@ -22,7 +22,6 @@
   const dict = map.readable(ymap);
 
   let color
-
   $: console.log($dict)
 
   $: {

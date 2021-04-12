@@ -36,7 +36,6 @@
         updatePlayerData((p) => p.set(game.name, color))
         games.y.set(game.name, JSON.stringify(game))
       }
-      console.log(color, color == undefined)
       isWatching = color == undefined
     }
   }

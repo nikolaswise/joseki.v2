@@ -6,6 +6,7 @@
   export let y
   export let size
   export let staged = false
+  export let isMarkedDead = false
 
   let playerColor
   $: playerColor = $player.get($path)
@@ -28,6 +29,11 @@
   {:else}
 
   {/if}
+  {#if isMarkedDead}
+    <div class="is-dead">
+      ☠️
+    </div>
+  {/if}
 </span>
 
 <style>
@@ -44,6 +50,10 @@
   }
   .staged {
     opacity: 0.9;
+  }
+  .is-dead {
+    z-index: 101;
+    font-size: 0.875rem;
   }
   hr {
     position: absolute;

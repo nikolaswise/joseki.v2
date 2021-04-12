@@ -3,7 +3,7 @@
   import { writable } from 'svelte/store';
 
   import Point from './Point.svelte'
-  import { submitMove } from './game-actions.js'
+  import { submitMove, markDead, markAlive, endGame } from './game-actions.js'
 
   export let game
   export let games
@@ -19,7 +19,11 @@
 
   const staged = writable([])
 
+  let deadMap
+
   let playStone = () => {}
+  let markDeadStone = () => {}
+  let markAliveStone = () => {}
 
   $: {
     board = Weiqi.createGame(game.size)
@@ -39,7 +43,22 @@
       viewMove = game.history.length
     }
 
+    console.log(game.accepted)
+    if (game.accepted.white && game.accepted.black && !game.winner) {
+      console.log('end game')
+      game.deadStones.forEach(stone => {
+        board.removeStone([stone[1][0], stone[1][1]])
+      })
+      let score = board.areaScore(game.komi)
+      console.log(score)
+      endGame(game, games)(score)
+    }
+
+    deadMap = new Map(game.deadStones)
+
     playStone = submitMove(game, games, board.getCurrentPlayer())
+    markDeadStone = markDead(game, games)
+    markAliveStone = markAlive(game, games)
     boardArr = board.getBoard().toArray()
   }
 </script>
@@ -49,7 +68,11 @@
     {#each row as stone, y}
       <Point
         on:play={playStone}
+        on:markDead={markDeadStone}
+        on:markAlive={markAliveStone}
         playable={play}
+        isMarkedDead={deadMap.get(`${x}${y}`)}
+        isMarkingDead={game.consecutivePasses == 2 && !game.winner}
         {stone}
         {x} {y}
         {staged}
