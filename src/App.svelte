@@ -22,9 +22,9 @@
   const dict = map.readable(ymap);
 
   let color
-  $: console.log($dict)
 
   $: {
+    console.log($dict)
     let playerData = JSON.stringify([...$player.entries()])
     localStorage.setItem('joseki-party', playerData)
   }

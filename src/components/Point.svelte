@@ -10,6 +10,16 @@
   export let staged
   export let isMarkingDead
   export let isMarkedDead
+  export let latestMove
+
+  let isLatest = false
+
+  $: {
+    if (latestMove) {
+      isLatest = x == latestMove[0] && y == latestMove[1]
+    }
+  }
+
 
   const dispatch = createEventDispatcher();
 
@@ -71,16 +81,14 @@
     {#if isMarkedDead}
       <!-- click to mark alive stone -->
       <button
-        on:click={markAlive}
-        class={stone == 'x' || stone == 'o'} >
+        on:click={markAlive} >
         <PointContent {stone} {x} {y} {size} {isMarkedDead}/>
       </button>
     <!-- else -->
     {:else}
       <!-- click to mark dead stone -->
       <button
-        on:click={markDead}
-        class={stone == 'x' || stone == 'o'} >
+        on:click={markDead} >
         <PointContent {stone} {x} {y} {size}/>
       </button>
     <!-- end -->
@@ -90,7 +98,7 @@
     <!-- click to stage -->
     <button
       on:click={stage(x,y)}
-      class={playable} >
+      class={isLatest ? `latest-move ${playable}` : ` ${playable}`} >
       <PointContent {stone} {x} {y} {size}/>
     </button>
   {/if}
@@ -119,5 +127,17 @@
     display: block;
     height: 0;
     padding-bottom: 100%;
+  }
+  .latest-move:after {
+    content: '';
+    background-color: var(--color-ground);
+    display: block;
+    height: 50%;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 100%;
+    width: 50%;
   }
 </style>

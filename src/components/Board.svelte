@@ -3,6 +3,7 @@
   import { writable } from 'svelte/store';
 
   import Point from './Point.svelte'
+  import Replayer from './Replayer.svelte'
   import { submitMove, markDead, markAlive, endGame } from './game-actions.js'
 
   export let game
@@ -43,14 +44,11 @@
       viewMove = game.history.length
     }
 
-    console.log(game.accepted)
     if (game.accepted.white && game.accepted.black && !game.winner) {
-      console.log('end game')
       game.deadStones.forEach(stone => {
         board.removeStone([stone[1][0], stone[1][1]])
       })
       let score = board.areaScore(game.komi)
-      console.log(score)
       endGame(game, games)(score)
     }
 
@@ -76,11 +74,18 @@
         {stone}
         {x} {y}
         {staged}
+        {latestMove}
         size={game.size}
       />
     {/each}
   {/each}
 </div>
+
+<Replayer
+  {game}
+  bind:viewMove
+  bind:rewatching
+/>
 
 <style>
   .grid {

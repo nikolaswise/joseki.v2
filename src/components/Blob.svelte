@@ -31,8 +31,12 @@
         blobber.style.top = `${(100 - deform) / 2}%`
         blobber.style.right = `${(100 - deform) / 2}%`
         blobber.style.transitionDuration = `${speed}ms`;
+        blobber.style.transform = `translate3d(0%, 0%, 0)`;
       })
-      animateBlobbers(blobbers)
+      setTimeout(function() {
+        animateBlobbers(blobbers)
+      }, '1ms')
+      // animateBlobbers(blobbers)
     }
   })
 </script>
