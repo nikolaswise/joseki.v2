@@ -30,7 +30,7 @@
   }
 </script>
 
-<div class="theme theme-default">
+<div class="theme">
   <div class="content">
     {#if $path == '/'}
       {#if $dict.size > 0}

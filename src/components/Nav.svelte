@@ -1,5 +1,5 @@
 <script>
-  import Button from './Button.svelte'
+  import ThemePicker from './ThemePicker.svelte'
   import Lockup from './Lockup.svelte'
   import { path, player } from '../store.js';
 
@@ -16,11 +16,9 @@
   </a>
   <div class="actions">
     {#if room}
-      {color ? 'Playing' : 'Watching'} <code>{room}</code>
+      <span>{color ? 'Playing' : 'Watching'} <code>{room}</code></span>
     {/if}
-    <Button>
-      ◐
-    </Button>
+    <ThemePicker />
   </div>
 
 </nav>
@@ -38,8 +36,12 @@
 
   .actions {
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
   }
-
+  span {
+    margin-right: 1rem;
+  }
   a {
     color: var(--color-figure);
   }
