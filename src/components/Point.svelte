@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
   import PointContent from './PointContent.svelte'
 
   export let size
@@ -10,6 +10,7 @@
   export let staged
   export let isMarkingDead
   export let isMarkedDead
+  export let isStarPoint
   export let latestMove
 
   let isLatest = false
@@ -53,6 +54,9 @@
       y: y
     });
   }
+
+  const latestMoveClass = (isLatest) =>`${isLatest ? 'latest-move' : ''}`
+  const starPointClass = (isStarPoint) => `${isStarPoint ? 'star-point' : ''}`
 </script>
 
 
@@ -62,6 +66,7 @@
   {#if pointIsStaged(x, y)}
     <!-- click to play -->
     <button
+      class={`${starPointClass(isStarPoint)}`}
       on:click={play(x,y)} >
       <PointContent {stone} {x} {y} {size} staged={true}/>
     </button>
@@ -69,6 +74,7 @@
   {:else}
     <!-- click to unstage -->
     <button
+      class={`${starPointClass(isStarPoint)}`}
       on:click={unstage(x,y)} >
       <PointContent {stone} {x} {y} {size}/>
     </button>
@@ -81,6 +87,7 @@
     {#if isMarkedDead}
       <!-- click to mark alive stone -->
       <button
+        class={`${starPointClass(isStarPoint)}`}
         on:click={markAlive} >
         <PointContent {stone} {x} {y} {size} {isMarkedDead}/>
       </button>
@@ -88,6 +95,7 @@
     {:else}
       <!-- click to mark dead stone -->
       <button
+        class={`${starPointClass(isStarPoint)}`}
         on:click={markDead} >
         <PointContent {stone} {x} {y} {size}/>
       </button>
@@ -97,8 +105,8 @@
   {:else}
     <!-- click to stage -->
     <button
-      on:click={stage(x,y)}
-      class={isLatest ? `latest-move ${playable}` : ` ${playable}`} >
+      class={`${starPointClass(isStarPoint)} ${latestMoveClass(isLatest)} ${playable}`}
+      on:click={stage(x,y)} >
       <PointContent {stone} {x} {y} {size}/>
     </button>
   {/if}
@@ -139,5 +147,14 @@
     transform: translate3d(-50%, 0, 0);
     border-radius: 100%;
     width: 50%;
+  }
+  .star-point:after {
+    content: '';
+    background-color: var(--color-black);
+    border-radius: 100%;
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    left: 35%;
   }
 </style>

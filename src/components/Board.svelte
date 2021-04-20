@@ -5,6 +5,7 @@
   import Point from './Point.svelte'
   import Replayer from './Replayer.svelte'
   import { submitMove, markDead, markAlive, endGame } from './game-actions.js'
+  import StarPoints from './star-points.js'
 
   export let game
   export let games
@@ -13,6 +14,7 @@
 
   let board
   let boardArr
+  let starPoints
 
   let viewMove = null
   let rewatching = false
@@ -25,6 +27,10 @@
   let playStone = () => {}
   let markDeadStone = () => {}
   let markAliveStone = () => {}
+
+  let isStarPoint = (point, StarPoints) => starPoints
+    .map(point => point.toString())
+    .includes(point.toString())
 
   $: {
     board = Weiqi.createGame(game.size)
@@ -58,6 +64,7 @@
     markDeadStone = markDead(game, games)
     markAliveStone = markAlive(game, games)
     boardArr = board.getBoard().toArray()
+    starPoints = StarPoints.get(game.size.toString())
   }
 </script>
 
@@ -71,6 +78,7 @@
         playable={play}
         isMarkedDead={deadMap.get(`${x}${y}`)}
         isMarkingDead={game.consecutivePasses == 2 && !game.winner}
+        isStarPoint={isStarPoint([x,y], starPoints)}
         {stone}
         {x} {y}
         {staged}
