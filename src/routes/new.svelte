@@ -34,11 +34,32 @@
     <label>
       Komi
       <select bind:value={komi}>
-        <option value=0>
-          No Komi
-        </option>
         <option value=0.5>
           1/2
+        </option>
+        <option value=1.5>
+          1 1/2
+        </option>
+        <option value=2.5>
+          2 1/2
+        </option>
+        <option value=3.5>
+          3 1/2
+        </option>
+        <option value=4.5>
+          4 1/2
+        </option>
+        <option value=5.5>
+          5 1/2
+        </option>
+        <option value=6.5>
+          6 1/2
+        </option>
+        <option value=7.5>
+          7 1/2
+        </option>
+        <option value=8.5>
+          8 1/2
         </option>
       </select>
     </label>

@@ -24,7 +24,7 @@
   let color
 
   $: {
-    console.log($dict)
+    console.log($dict.size)
     let playerData = JSON.stringify([...$player.entries()])
     localStorage.setItem('joseki-party', playerData)
   }
@@ -33,8 +33,12 @@
 <div class="theme theme-default">
   <div class="content">
     {#if $path == '/'}
-      <HomeNav />
-      <Index games={dict}/>
+      {#if $dict.size > 0}
+        <Nav />
+        <Index games={dict}/>
+      {:else}
+        <HomeNav />
+      {/if}
     {:else if $path == '/new'}
       <Nav />
       <New games={dict}/>

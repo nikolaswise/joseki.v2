@@ -47,7 +47,7 @@
     width: 1rem;
     height: 1rem;
     position: absolute;
-    transform: translate3d(-125%, var(--u-2p), 0);
+    transform: translate3d(-135%, 0, 0);
   }
   a:hover .hover {
     display: inline-block

@@ -39,4 +39,8 @@
   .actions {
     margin-bottom: 1rem;
   }
+
+  a {
+    color: var(--color-figure);
+  }
 </style>
