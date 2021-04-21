@@ -17,7 +17,7 @@
   export let name;
 
   const ydoc = new Y.Doc();
-  const provider = new WebrtcProvider('joseki-party', ydoc)
+  const provider = new WebrtcProvider('joseki-party-v2', ydoc)
   const ymap = ydoc.getMap('dict');
   const dict = map.readable(ymap);
 
@@ -26,12 +26,11 @@
   $: {
     console.log($dict.size)
     let playerData = JSON.stringify([...$player.entries()])
-    localStorage.setItem('joseki-party', playerData)
+    localStorage.setItem('joseki-party-v2', playerData)
   }
 </script>
 
 <div class="theme">
-  <mark>??</mark>
   <div class="content">
     {#if $path == '/'}
       {#if $dict.size > 0}
