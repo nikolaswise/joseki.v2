@@ -24,9 +24,13 @@
   let color
 
   $: {
+    console.log('whats in here?')
+    console.log($player)
     console.log($dict.size)
     let playerData = JSON.stringify([...$player.entries()])
-    localStorage.setItem('joseki-party-v2', playerData)
+    console.log('set local player data in')
+    console.log(playerData)
+    localStorage.setItem('joseki-player', playerData)
   }
 </script>
 
