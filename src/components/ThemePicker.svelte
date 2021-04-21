@@ -21,7 +21,7 @@
   const toggleMenu = () => isOpen = !isOpen
 
   const getStashedTheme = () => {
-    let theme = window.localStorage.getItem('joseki-theme')
+    let theme = window.localStorage.getItem('joseki-theme') || 'theme-default'
       document.body.classList = ''
     document.body.classList.add(theme)
   }
