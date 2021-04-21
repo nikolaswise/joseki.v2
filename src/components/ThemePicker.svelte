@@ -21,7 +21,7 @@
   const toggleMenu = () => isOpen = !isOpen
 
   const getStashedTheme = () => {
-    let theme = window.localStorage.getItem('joseki-theme')
+    let theme = window.localStorage.getItem('joseki-theme') || 'theme-default'
       document.body.classList = ''
     document.body.classList.add(theme)
   }
@@ -36,6 +36,7 @@
 <style>
   .menu {
     filter: url("#shadowed-goo");
+    z-index: 100;
   }
   .toggle-menu {
     display: none;
@@ -84,7 +85,7 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0" width="0">
   <defs>
-    <filter id="shadowed-goo">
+    <filter id="shadowed-goo" width="102400" height="102400">
       <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -9" result="goo" />
       <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />

@@ -17,16 +17,20 @@
   export let name;
 
   const ydoc = new Y.Doc();
-  const provider = new WebrtcProvider('joseki-party', ydoc)
+  const provider = new WebrtcProvider('joseki-party-v2', ydoc)
   const ymap = ydoc.getMap('dict');
   const dict = map.readable(ymap);
 
   let color
 
   $: {
+    console.log('whats in here?')
+    console.log($player)
     console.log($dict.size)
     let playerData = JSON.stringify([...$player.entries()])
-    localStorage.setItem('joseki-party', playerData)
+    console.log('set local player data in')
+    console.log(playerData)
+    localStorage.setItem('joseki-player', playerData)
   }
 </script>
 
@@ -60,10 +64,14 @@
   class="defs"
   xmlns="http://www.w3.org/2000/svg" version="1.1">
   <defs>
-    <filter id="goo">
+<!--     <filter id="goo" width="102400" height="102400">
       <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -7" result="goo" />
       <feComposite in="SourceGraphic" in2="goo" operator="mix"/>
+    </filter> -->
+    <filter id="goo" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7" result="cm" />
     </filter>
   </defs>
 </svg>
@@ -79,7 +87,12 @@
     grid-template-rows: 1fr auto;
     padding-top: 1rem;
   }
-
+  .content {
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   footer {
     text-align: center;
   }
