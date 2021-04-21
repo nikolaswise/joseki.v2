@@ -105,12 +105,14 @@
     display: grid;
     align-items: center;
     height: 66%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   form {
     border: 2px solid var(--color-figure);
-    padding: 2rem 3rem;
-    max-width: max-content;
+    padding: 1rem 2rem;
+    max-width: 100%;
     margin: auto;
   }
 
