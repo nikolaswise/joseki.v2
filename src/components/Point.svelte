@@ -156,5 +156,6 @@
     height: 40%;
     position: absolute;
     left: 35%;
+    z-index: 1;
   }
 </style>
